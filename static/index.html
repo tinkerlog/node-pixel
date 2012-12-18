@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=800, initial-scale=1.0">
+  <title>LEDs</title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/bootstrap-responsive.css">
+  <link rel="stylesheet" href="css/example-fluid-layout.css">
+</head>
+<body ng-controller="LedCtrl" id="body" ng-mouseup="mouseUp($event)" style="background-color:rgb(50, 50, 50)">
+
+  <div class="container" style="max-width: 600px" ng-mouseout="mouseOut($event)" >
+    <div class="row span5 ledGrid" ng-mousemove="mouseMove($event)" > 
+      <ul class="thumbnails">
+	<li ng-repeat="led in leds" class="span1">
+	  <div class="thumbnail2" style="background-color:rgb({{led.r}}, {{led.g}}, {{led.b}})"
+	    ng-mousedown="mouseDown(led, $event)"
+	    te-touchstart="touchStart(led, $event)"
+	    te-touchmove="touchMove($event)"
+	    te-touchend="mouseUp($event)">&nbsp;</div>
+	</li>
+      </ul>
+    </div>
+  </div>
+  
+  <script src="lib/angular.min.js"></script>
+  <script src="lib/angular-touchevents.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/services.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+
+</body>
+</html>
