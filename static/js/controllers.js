@@ -14,6 +14,14 @@ function LedCtrl($scope, $http, socket) {
     $scope.leds = data;
   });
 
+  $scope.startAnimation = function() {
+    socket.emit("startAnimation", {});
+  }
+
+  $scope.stopAnimation = function() {
+    socket.emit("stopAnimation", {});
+  }
+
   // submit a changed led via socket
   $scope.submitLed = function(led) {
     /*
@@ -41,6 +49,9 @@ function LedCtrl($scope, $http, socket) {
     $scope.leds[id].b = data.b;
   });
 
+  socket.on("update", function(data) {
+    $scope.leds = data;
+  });
 
   //--- mouse events -----
 
@@ -58,7 +69,7 @@ function LedCtrl($scope, $http, socket) {
   }
 
   $scope.mouseOut = function(event) {
-    if (event.relatedTarget.id == "body") {
+    if (typeof event !== "undefined" && event.relatedTarget.id == "body") {
       mouseDown = false;
     }
   }
