@@ -20,6 +20,11 @@ Checkout node-pixel.
 ```
 git checkout https://github.com/tinkerlog/node-pixel
 ```
+You have to rebuild the spi module.
+```
+npm rebuild node_modules/spi
+```
+
 
 Install additional modules.
 
